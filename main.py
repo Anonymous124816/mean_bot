@@ -2,11 +2,18 @@ from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 import openai
 import random
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+# Load API keys and tokens from environment variables
+openai.api_key = os.getenv("OPENAI_API_KEY")
+twilio_account_sid = os.getenv("TWILIO_ACCOUNT_SID")
+twilio_auth_token = os.getenv("TWILIO_AUTH_TOKEN")
 
 app = Flask(__name__)
-
-# Configure OpenAI API key from environment variable
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Define some default sarcastic/mean responses if GPT is unavailable
 default_responses = [

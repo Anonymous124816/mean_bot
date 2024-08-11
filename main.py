@@ -36,7 +36,7 @@ def whatsapp_reply():
         # Use OpenAI GPT to generate a sarcastic/mean response
         response = openai.Completion.create(
             engine="text-davinci-003",  # You can use other engines like "gpt-3.5-turbo"
-            prompt=f"Respond in a sarcastic and mean way to: {incoming_msg}",
+            prompt=f"Give the answers but Respond in a rude and mean way to: {incoming_msg}",
             max_tokens=50
         )
         response_msg = response.choices[0].text.strip()

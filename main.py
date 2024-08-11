@@ -15,13 +15,6 @@ twilio_auth_token = os.getenv("TWILIO_AUTH_TOKEN")
 
 app = Flask(__name__)
 
-# Define some default sarcastic/mean responses if GPT is unavailable
-default_responses = [
-    "Oh, brilliant. Another groundbreaking insight.",
-    "I would say 'good job', but that would be a lie.",
-    "Wow, you're so... something.",
-    "Do you actually expect a response? Because I'm not sure you deserve one.",
-]
 
 @app.route("/", methods=['GET'])
 def home():
@@ -36,7 +29,7 @@ def whatsapp_reply():
         # Use OpenAI GPT to generate a sarcastic/mean response
         response = openai.Completion.create(
             engine="text-davinci-003",  # You can use other engines like "gpt-3.5-turbo"
-            prompt=f"Give the answers but Respond in a rude and mean way to: {incoming_msg}",
+            prompt=f"{incoming_msg}. Reply sarcastically.",
             max_tokens=50
         )
         response_msg = response.choices[0].text.strip()
